@@ -1,4 +1,3 @@
-gameboard = [1,2,3,4,5,6,7,8,9];
 
 const GameBoard = (function(){
     const rows = 3;
@@ -7,13 +6,21 @@ const GameBoard = (function(){
 
     for (let i = 0; i< rows; i++){
         board[i]= [];
-        console.log(board)
         for(let j = 0; j < columns; j++){
-            board[i] = [];
+            board[i].push(null);
         }
     }
 
     const getBoard = () => board;
 
-
+    return { getBoard }
 })();
+
+const createPlayer = ((name, marker) =>{
+    return { name, marker };
+})();
+console.log(GameBoard.getBoard());
+
+const player1 = createPlayer('Steve', 'X');
+const player2 = createPlayer('john', 'O');
+console.log(player1);
