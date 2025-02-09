@@ -18,10 +18,36 @@ const GameBoard = (function(){
 
 console.log(GameBoard.getBoard());
 
-// const createPlayer = ((name, marker) =>{
-//     return { name, marker };
-// })();
+// const createPlayer = (function(name, symbol){
+//     return { name, symbol };
+// });
 
-// const player1 = createPlayer('Steve', 'X');
-// const player2 = createPlayer('john', 'O');
-// console.log(player1);
+const GameController = (function(
+playerOneName = "Player One",
+playerTwoName = "Player two"){
+    const board  = GameBoard.getBoard();
+
+    const players = [
+        {
+        name: playerOneName,
+        symbol: "X"
+        },
+        {   
+        name: playerTwoName,
+        symbol: "O"
+        }
+    ];
+
+    let activePlayer = players[0];
+
+    const switchPlayerTurn = () => { 
+        activePlayer = activePlayer === players[0] ? players[1] : players[0];
+    }
+
+    const playRound = () => {
+        
+    }
+
+    return{ activePlayer, }
+
+})();
