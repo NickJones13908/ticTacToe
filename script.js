@@ -16,11 +16,12 @@ const GameBoard = (function(){
     return { getBoard }
 })();
 
-const createPlayer = ((name, marker) =>{
-    return { name, marker };
-})();
 console.log(GameBoard.getBoard());
 
-const player1 = createPlayer('Steve', 'X');
-const player2 = createPlayer('john', 'O');
-console.log(player1);
+// const createPlayer = ((name, marker) =>{
+//     return { name, marker };
+// })();
+
+// const player1 = createPlayer('Steve', 'X');
+// const player2 = createPlayer('john', 'O');
+// console.log(player1);
