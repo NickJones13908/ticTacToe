@@ -55,10 +55,6 @@ const GameBoard = (function(){
 
 console.log(GameBoard.getBoard());
 
-// const createPlayer = (function(name, symbol){
-//     return { name, symbol };
-// });
-
 const GameController = (function(
 playerOneName = "Player One",
 playerTwoName = "Player two"){
@@ -88,23 +84,23 @@ playerTwoName = "Player two"){
     //  append symbol to the index on the grid created
 
     const playRound = (row, col) => {
-        if (!board.placeMarker(row, col, activePlayer.symbol)){
+        if (!GameBoard.placeMarker(row, col, activePlayer.symbol)){
             console.log("spot already taken! Choose another.")
             return;
         }
         console.log(`${activePlayer.name} placed ${activePlayer.symbol} at (${row} , ${col})`);
         
-        const winnerSymbol = board.checkWin();
+        const winnerSymbol = GameBoard.checkWin();
 
         if (winnerSymbol){
             const winner = players.find(player => player.symbol === winnerSymbol);
             console.log(`${winner.name} wins!`);
-            board.resetBoard();
+            GameBoard.resetBoard();
             return;
         }
-        if (board.isFull()){
+        if (GameBoard.isFull()){
             console.log("It's a tie!");
-            board.resetBoard();
+            GameBoard.resetBoard();
             return;
         }
 
