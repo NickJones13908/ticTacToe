@@ -6,7 +6,7 @@ const GameBoard = (function(){
 
     for (let i = 0; i< rows; i++){
         board[i]= [];
-        for(let j = 0; j < columns; j++){
+        for(let j = 0; j < columns; j++){t5g
             board[i].push(null);
         }
     }
