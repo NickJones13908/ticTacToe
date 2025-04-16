@@ -78,11 +78,6 @@ playerTwoName = "Player two"){
     }
 
 
-    // play round by
-    // firstly check to see if the game is in a winning state 
-    // let player one choose a spot on the grid to place a symbol
-    //  append symbol to the index on the grid created
-
     const playRound = (row, col) => {
         if (!GameBoard.placeMarker(row, col, activePlayer.symbol)){
             console.log("spot already taken! Choose another.")
