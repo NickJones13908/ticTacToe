@@ -55,20 +55,11 @@ const GameBoard = (function(){
 
 console.log(GameBoard.getBoard());
 
-const GameController = (function(
-playerOneName = "Player One",
-playerTwoName = "Player two"){
-    const board  = GameBoard.getBoard();
+const GameController = (function(){
 
     const players = [
-        {
-        name: playerOneName,
-        symbol: "X"
-        },
-        {   
-        name: playerTwoName,
-        symbol: "O"
-        }
+        {name: "Player One", symbol: "X"},
+        {name: "Player Two", symbol: "O"}
     ];
 
     let activePlayer = players[0];
@@ -81,7 +72,7 @@ playerTwoName = "Player two"){
     const playRound = (row, col) => {
         if (!GameBoard.placeMarker(row, col, activePlayer.symbol)){
             console.log("spot already taken! Choose another.")
-            return;
+            return "spot already taken! Choose another.";
         }
         console.log(`${activePlayer.name} placed ${activePlayer.symbol} at (${row} , ${col})`);
         
@@ -91,15 +82,16 @@ playerTwoName = "Player two"){
             const winner = players.find(player => player.symbol === winnerSymbol);
             console.log(`${winner.name} wins!`);
             GameBoard.resetBoard();
-            return;
+            return `${winner.name} wins!`;
         }
         if (GameBoard.isFull()){
             console.log("It's a tie!");
             GameBoard.resetBoard();
-            return;
+            return "It's a tie!";
         }
 
         switchPlayerTurn();
+        return null;
 
     };
 
@@ -107,4 +99,51 @@ playerTwoName = "Player two"){
 
     return{ playRound, getActivePlayer };
 
+})();
+
+const DisplayController = (function(){
+    const game = GameBoard;
+    const playerTurnDiv = document.querySelector('.playerTurn');
+    const boardDiv = document.querySelector('.board');
+    const messageDiv = document.querySelector(".message");
+    //console.log(game);
+
+      
+
+    const updateScreen = () =>{
+
+        boardDiv.textContent = "";
+
+        const board = game.getBoard();
+        const activePlayer = GameController.getActivePlayer();
+
+        playerTurnDiv.textContent = `${activePlayer.name} = The current active player`
+
+        //updates the screen
+        board.forEach((row, rowIndex) => {
+            row.forEach((cell, colIndex) => {
+                const cellButton = document.createElement("button");
+                cellButton.classList.add("cell");
+                cellButton.dataset.row = rowIndex;
+                cellButton.dataset.column = colIndex;
+                cellButton.textContent = cell ? cell : "";
+                boardDiv.appendChild(cellButton);
+                cellButton.addEventListener("click", () => {
+                    const row = parseInt(cellButton.dataset.row);
+                    const col = parseInt(cellButton.dataset.column);
+                    const message = GameController.playRound(row, col);
+                    updateScreen();
+
+                    if (message){
+                        messageDiv.textContent = message;
+                    }
+                    else{
+                        messageDiv.textContent = "";
+                    }
+                })
+            });
+        });
+
+    }
+    updateScreen()
 })();
