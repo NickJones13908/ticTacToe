@@ -78,6 +78,15 @@ html, body {
     background: lightyellow;
     cursor: pointer;
 }
+.header{
+  background: yellowgreen;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  border: 1px solid white;
+
+}
 .container {
     height: 100%;
     width: 100%;
@@ -91,5 +100,16 @@ html, body {
     font-size: 2rem;
     padding: 2px;
     background: yellowgreen;
-  }
+}
+.resetButton{
+  cursor: pointer;
+  border: 2px solid white;
+  background: yellowgreen;
+  padding: 2px;
+  height: 5rem;
+  width: 15rem;
+}
+.resetButton:hover{
+  box-shadow: 0 5px 15px rgba(145, 92, 182, .4);
+}
   
